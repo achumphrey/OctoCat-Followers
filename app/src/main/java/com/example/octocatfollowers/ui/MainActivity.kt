@@ -28,13 +28,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        getDepenedency()
+        getDependency()
         setupRecyclerView()
 
         viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(FollowersViewModel::class.java)
 
-        viewModel.followersList.observe(this, Observer {
+        viewModel.followerList .observe(this, Observer {
             followersAdapter.updateList(it)
 
         })
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getFollowers()
     }
 
-    fun getDepenedency() {
+    fun getDependency() {
         DaggerFollowersComponent.builder()
             .repositoryModule(RepositoryModule())
             .webServicesModule(WebServicesModule())
